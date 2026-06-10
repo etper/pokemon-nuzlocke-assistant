@@ -1,29 +1,3 @@
-### 1. Route status tracking (highest priority)
-#
-#Right now a route can only store:
-#
-#```json
-#{
-  #"caught": "Ralts",
-  #"nickname": "",
-  #"status": "alive"
-#}
-#```
-#
-#Missing states:
-#
-#* Not encountered yet
-#* Encountered but failed
-#* Encountered and caught
-#* Encountered and killed
-#* Encountered and fled
-#* Static encounter
-#* Gift Pokémon
-#
-#Without this, users can't accurately record what happened.
-#
-#---
-#
 ### 2. Dupes Clause support
 #
 #A huge Nuzlocke feature.

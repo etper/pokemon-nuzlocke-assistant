@@ -84,6 +84,9 @@ func build_encounters(run_data: Dictionary):
 			var button := CheckBox.new()
 
 			button.text = pokemon
+			
+			if species_already_owned(pokemon):
+				button.text = pokemon + " (DUPE)"
 
 			var caught = (
 				run_data
@@ -122,7 +125,10 @@ func select_pokemon(
 		"route_status": "caught",
 		"pokemon": pokemon,
 		"nickname": "",
-		"pokemon_status": "alive"
+		"pokemon_status": "alive",
+		
+		"is_dupe": false,
+		"rerolled_from": ""
 	}
 
 	if not pokemon in RunManager.current_run["team"]:
@@ -247,3 +253,12 @@ func set_route_status(route_name:String, status:String):
 	RunManager.current_run["encounters"][route_name]["route_status"] = status
 
 	RunManager.save_current_run()
+
+func species_already_owned(species:String) -> bool:
+
+	for route_data in RunManager.current_run.get("encounters", {}).values():
+
+		if route_data.get("pokemon", "") == species:
+			return true
+
+	return false
