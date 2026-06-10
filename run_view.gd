@@ -57,6 +57,18 @@ func build_encounters(run_data: Dictionary):
 		for status in ROUTE_STATUSES:
 			status_option.add_item(status)
 
+		var saved_status = (
+			run_data
+			.get("encounters", {})
+			.get(route_name, {})
+			.get("route_status", "available")
+		)
+
+		for i in range(status_option.item_count):
+			if status_option.get_item_text(i) == saved_status:
+				status_option.select(i)
+				break
+
 		status_option.item_selected.connect(
 			func(index):
 				set_route_status(
