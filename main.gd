@@ -16,7 +16,8 @@ func _on_new_run_button_pressed() -> void:
 		"game": "Emerald",
 		"badges": 0,
 		"alive_count": 0,
-		"dead_count": 0
+		"dead_count": 0,
+		"encounters": {}
 	}
 
 	save_run(run_data)

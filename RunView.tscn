@@ -26,3 +26,13 @@ offset_top = 51.0
 offset_right = 45.0
 offset_bottom = 82.0
 text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=732492466]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 47.0
+offset_right = 1411.0
+offset_bottom = 715.0
+
+[node name="EncounterList" type="VBoxContainer" parent="ScrollContainer" unique_id=1197495330]
+layout_mode = 2
