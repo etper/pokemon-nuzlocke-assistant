@@ -4,6 +4,9 @@ const EncounterData = preload("res://encounter_data.gd")
 
 @onready var encounter_list = $ScrollContainer/EncounterList
 
+@onready var team_list = $TeamList
+@onready var graveyard_list = $GraveyardList
+
 func _ready() -> void:
 	setup(RunManager.current_run)
 
@@ -12,6 +15,8 @@ func setup(data: Dictionary) -> void:
 	$BadgeLabel.text = "Badges: %d" % int(data.get("badges", 0))
 
 	build_encounters(data)
+	
+	refresh_team_views()
 
 func build_encounters(run_data:Dictionary):
 
@@ -69,9 +74,29 @@ func select_pokemon(
 		RunManager.current_run["encounters"] = {}
 
 	RunManager.current_run["encounters"][route_name] = {
-		"caught": pokemon
+		"caught": pokemon,
+		"nickname": "",
+		"status": "alive"
 	}
 
 	RunManager.save_current_run()
 
 	get_tree().reload_current_scene()
+
+func refresh_team_views():
+
+	for child in team_list.get_children():
+		child.queue_free()
+
+	for child in graveyard_list.get_children():
+		child.queue_free()
+
+	for pokemon in RunManager.current_run.get("team", []):
+		var label := Label.new()
+		label.text = pokemon
+		team_list.add_child(label)
+
+	for pokemon in RunManager.current_run.get("graveyard", []):
+		var label := Label.new()
+		label.text = pokemon
+		graveyard_list.add_child(label)
