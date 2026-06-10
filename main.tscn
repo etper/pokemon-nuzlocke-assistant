@@ -38,8 +38,8 @@ text = "CONTINUE RUN"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=743950137]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 795.0
+offset_bottom = 973.0
 
 [node name="RunsContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=58262443]
 layout_mode = 2

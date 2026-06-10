@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b3fngfkf4whbv"]
+
+[ext_resource type="Script" uid="uid://daeegtejx0m4r" path="res://run_view.gd" id="1_lin20"]
+
+[node name="RunView" type="Control" unique_id=841661585]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lin20")
+
+[node name="GameLabel" type="Label" parent="." unique_id=302174323]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Game: EMERALD"
+
+[node name="BadgeLabel" type="Label" parent="." unique_id=1589146603]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 74.0
+offset_bottom = 47.0
+text = "Badges: 0"
+
+[node name="BackButton" type="Button" parent="." unique_id=644583330]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 45.0
+offset_bottom = 82.0
+text = "Back"

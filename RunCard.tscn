@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b6gw10ryvnq7v" path="res://run_card.gd" id="1_0l0pg"]
 
 [node name="RunCard" type="PanelContainer" unique_id=1882635879]
-offset_right = 1926.0
-offset_bottom = 1073.0
+offset_right = 541.0
+offset_bottom = 264.0
 script = ExtResource("1_0l0pg")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2103090069]

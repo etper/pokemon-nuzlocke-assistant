@@ -89,12 +89,14 @@ func show_saved_runs() -> void:
 		card.open_requested.connect(_on_run_open_requested)
 
 func _on_run_open_requested(run_id: String) -> void:
-	print("Opening run: ", run_id)
-
 	var run_data = load_run(run_id)
 
-	if run_data:
-		print(run_data)
+	if run_data.is_empty():
+		return
+
+	RunManager.current_run = run_data
+
+	get_tree().change_scene_to_file("res://RunView.tscn")
 
 func load_run(run_id: String) -> Dictionary:
 	var path := SAVE_DIR + run_id + ".json"
