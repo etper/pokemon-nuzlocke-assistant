@@ -2,24 +2,27 @@ extends PanelContainer
 
 signal open_requested(run_id)
 
-@onready var game_label = $MarginContainer/VBoxContainer/GameLabel
-@onready var badge_label = $MarginContainer/VBoxContainer/HBoxContainer/BadgeLabel
-@onready var alive_label = $MarginContainer/VBoxContainer/HBoxContainer/AliveLabel
-@onready var dead_label = $MarginContainer/VBoxContainer/HBoxContainer/DeadLabel
-@onready var open_button = $MarginContainer/VBoxContainer/OpenButton
+@onready var game_label: Label = $MarginContainer/VBoxContainer/GameLabel
+@onready var badge_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/BadgeLabel
+@onready var alive_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/AliveLabel
+@onready var dead_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/DeadLabel
+@onready var open_button: Button = $MarginContainer/VBoxContainer/OpenButton
 
-var run_id: String
+var run_id: String = ""
 
 func _ready() -> void:
 	open_button.pressed.connect(_on_open_pressed)
 
 func setup(run_data: Dictionary) -> void:
-	run_id = run_data["id"]
+	if run_data.is_empty():
+		return
 
-	game_label.text = run_data["game"]
-	badge_label.text = "Badges: %d" % run_data["badges"]
-	alive_label.text = "Alive: %d" % run_data["alive_count"]
-	dead_label.text = "Dead: %d" % run_data["dead_count"]
+	run_id = str(run_data.get("id", ""))
+
+	game_label.text = str(run_data.get("game", "Unknown"))
+	badge_label.text = "Badges: %d" % int(run_data.get("badges", 0))
+	alive_label.text = "Alive: %d" % int(run_data.get("alive_count", 0))
+	dead_label.text = "Dead: %d" % int(run_data.get("dead_count", 0))
 
 func _on_open_pressed() -> void:
 	open_requested.emit(run_id)

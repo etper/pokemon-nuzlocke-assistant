@@ -82,11 +82,11 @@ func show_saved_runs() -> void:
 	for run_data in runs:
 		var card = RUN_CARD_SCENE.instantiate()
 
+		runs_container.add_child(card)
+
 		card.setup(run_data)
 
 		card.open_requested.connect(_on_run_open_requested)
-
-		runs_container.add_child(card)
 
 func _on_run_open_requested(run_id: String) -> void:
 	print("Opening run: ", run_id)
@@ -107,7 +107,7 @@ func load_run(run_id: String) -> Dictionary:
 	if file == null:
 		return {}
 
-	var parsed := JSON.parse_string(file.get_as_text())
+	var parsed = JSON.parse_string(file.get_as_text())
 
 	if parsed is Dictionary:
 		return parsed
