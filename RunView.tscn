@@ -39,17 +39,21 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2026447071]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 13.0
+offset_top = 206.0
+offset_right = 318.0
+offset_bottom = 336.0
 
 [node name="TeamLabel" type="Label" parent="VBoxContainer" unique_id=1905851456]
 layout_mode = 2
+text = "Current Team"
 
-[node name="TeamList" type="Label" parent="VBoxContainer" unique_id=507467827]
+[node name="TeamList" type="VBoxContainer" parent="VBoxContainer" unique_id=855883313]
 layout_mode = 2
 
 [node name="GraveyardLabel" type="Label" parent="VBoxContainer" unique_id=36493515]
 layout_mode = 2
+text = "Graveyard"
 
-[node name="GraveyardList" type="Label" parent="VBoxContainer" unique_id=1967280689]
+[node name="GraveyardList" type="VBoxContainer" parent="VBoxContainer" unique_id=1721610790]
 layout_mode = 2
