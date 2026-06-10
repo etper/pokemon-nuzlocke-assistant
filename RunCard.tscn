@@ -20,12 +20,16 @@ layout_mode = 2
 
 [node name="BadgeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=803147718]
 layout_mode = 2
+text = "BADGES: 0"
 
 [node name="AliveLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=818323317]
 layout_mode = 2
+text = "ALIVE: 0"
 
 [node name="DeadLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=415021308]
 layout_mode = 2
+text = "DEAD: 0"
 
 [node name="OpenButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1743779676]
 layout_mode = 2
+text = "OPEN RUN"
