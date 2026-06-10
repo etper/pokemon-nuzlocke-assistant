@@ -1,17 +1,20 @@
 extends PanelContainer
 
 signal open_requested(run_id)
+signal delete_requested(run_id)
 
 @onready var game_label: Label = $MarginContainer/VBoxContainer/GameLabel
 @onready var badge_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/BadgeLabel
 @onready var alive_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/AliveLabel
 @onready var dead_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/DeadLabel
 @onready var open_button: Button = $MarginContainer/VBoxContainer/OpenButton
+@onready var delete_button: Button = $MarginContainer/VBoxContainer/DeleteButton
 
 var run_id: String = ""
 
 func _ready() -> void:
 	open_button.pressed.connect(_on_open_pressed)
+	delete_button.pressed.connect(_on_delete_pressed)
 
 func setup(run_data: Dictionary) -> void:
 	if run_data.is_empty():
@@ -26,3 +29,6 @@ func setup(run_data: Dictionary) -> void:
 
 func _on_open_pressed() -> void:
 	open_requested.emit(run_id)
+
+func _on_delete_pressed() -> void:
+	delete_requested.emit(run_id)

@@ -87,6 +87,7 @@ func show_saved_runs() -> void:
 		card.setup(run_data)
 
 		card.open_requested.connect(_on_run_open_requested)
+		card.delete_requested.connect(_on_run_delete_requested)
 
 func _on_run_open_requested(run_id: String) -> void:
 	var run_data = load_run(run_id)
@@ -115,3 +116,11 @@ func load_run(run_id: String) -> Dictionary:
 		return parsed
 
 	return {}
+
+func _on_run_delete_requested(run_id: String) -> void:
+	var path := SAVE_DIR + run_id + ".json"
+
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+
+	show_saved_runs()

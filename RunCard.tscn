@@ -35,3 +35,7 @@ text = "DEAD: 0"
 [node name="OpenButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1743779676]
 layout_mode = 2
 text = "OPEN RUN"
+
+[node name="DeleteButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=142650567]
+layout_mode = 2
+text = "DELETE RUN"
