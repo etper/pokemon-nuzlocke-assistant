@@ -35,3 +35,6 @@ text = "NEW RUN"
 [node name="ContinueRunButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=87155737]
 layout_mode = 2
 text = "CONTINUE RUN"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/NewRunButton" to="." method="_on_new_run_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ContinueRunButton" to="." method="_on_continue_run_button_pressed"]
