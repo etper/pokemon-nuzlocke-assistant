@@ -7,6 +7,16 @@ const EncounterData = preload("res://encounter_data.gd")
 @onready var team_list = $VBoxContainer/TeamList
 @onready var graveyard_list = $VBoxContainer/GraveyardList
 
+const ROUTE_STATUSES = [
+	"available",
+	"caught",
+	"failed",
+	"killed",
+	"fled",
+	"static",
+	"gift"
+]
+
 func _ready() -> void:
 	setup(RunManager.current_run)
 
@@ -41,6 +51,21 @@ func build_encounters(run_data: Dictionary):
 		title.text = route_name
 
 		route_box.add_child(title)
+		
+		var status_option := OptionButton.new()
+
+		for status in ROUTE_STATUSES:
+			status_option.add_item(status)
+
+		status_option.item_selected.connect(
+			func(index):
+				set_route_status(
+					route_name,
+					status_option.get_item_text(index)
+				)
+		)
+
+		route_box.add_child(status_option)
 
 		for pokemon in routes[route_name]:
 
@@ -52,7 +77,7 @@ func build_encounters(run_data: Dictionary):
 				run_data
 				.get("encounters", {})
 				.get(route_name, {})
-				.get("caught", null)
+				.get("pokemon", null)
 			)
 
 			button.button_pressed = (
@@ -82,9 +107,10 @@ func select_pokemon(
 		RunManager.current_run["encounters"] = {}
 
 	RunManager.current_run["encounters"][route_name] = {
-		"caught": pokemon,
+		"route_status": "caught",
+		"pokemon": pokemon,
 		"nickname": "",
-		"status": "alive"
+		"pokemon_status": "alive"
 	}
 
 	if not pokemon in RunManager.current_run["team"]:
@@ -197,3 +223,15 @@ func revive_pokemon(pokemon: String):
 	RunManager.save_current_run()
 
 	refresh_team_views()
+
+func set_route_status(route_name:String, status:String):
+
+	if not RunManager.current_run.has("encounters"):
+		RunManager.current_run["encounters"] = {}
+
+	if not RunManager.current_run["encounters"].has(route_name):
+		RunManager.current_run["encounters"][route_name] = {}
+
+	RunManager.current_run["encounters"][route_name]["route_status"] = status
+
+	RunManager.save_current_run()
